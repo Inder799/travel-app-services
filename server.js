@@ -7,6 +7,7 @@ import categoryAddedToDBRouter from "./routes/categoryimport.router.js";
 import categoryRouter from "./routes/category.router.js";
 import singleHotelRouter from "./routes/singlehotel.router.js";
 import authRouter from "./routes/auth.router.js";
+import wishlistrouter from "./routes/wishlist.router.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -32,6 +33,8 @@ app.use("/api/category", categoryRouter);
 app.use("/api/hotels", singleHotelRouter);
 
 app.use("/api/auth", authRouter);
+
+app.use("/api/wishlist", wishlistrouter);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

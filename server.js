@@ -3,6 +3,8 @@ import hotelRouter from "./routes/hotel.router.js";
 import mongoose from "mongoose";
 import { connectDB } from "./config/dbconfig.js";
 import hotelDataAddedToDBRouter from "./routes/dataimport.router.js";
+import categoryAddedToDBRouter from "./routes/categoryimport.router.js";
+import categoryRouter from "./routes/category.router.js";
 
 const app = express();
 app.use(express.json());
@@ -16,7 +18,11 @@ app.get("/", (req, res) => {
 
 app.use("/api/hoteldata", hotelDataAddedToDBRouter);
 
+app.use("/api/categorydata", categoryAddedToDBRouter);
+
 app.use("/api/hotels", hotelRouter);
+
+app.use("/api/category", categoryRouter);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

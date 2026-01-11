@@ -1,9 +1,10 @@
 import express from "express";
 import { Wishlist } from "../model/wishlist.model.js";
+import { verifyUser } from "../middleware/verifyUser.js";
 
 const router = express.Router();
 
-router.route("/").post(async (req, res) => {
+router.route("/").post(verifyUser, async (req, res) => {
   const newWishlist = new Wishlist(req.body);
   try {
     const savedWishlist = await newWishlist.save();
@@ -14,7 +15,7 @@ router.route("/").post(async (req, res) => {
   }
 });
 
-router.route("/:id").delete(async (req, res) => {
+router.route("/:id").delete(verifyUser, async (req, res) => {
   try {
     await Wishlist.findByIdAndDelete(req.params.id);
     res.json({ message: "Hotel Deleted from Wishlist" });
@@ -25,7 +26,7 @@ router.route("/:id").delete(async (req, res) => {
   }
 });
 
-router.route("/").get(async (req, res) => {
+router.route("/").get(verifyUser, async (req, res) => {
   try {
     const wishlist = await Wishlist.find({});
     wishlist

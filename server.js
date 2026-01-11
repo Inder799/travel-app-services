@@ -6,6 +6,10 @@ import hotelDataAddedToDBRouter from "./routes/dataimport.router.js";
 import categoryAddedToDBRouter from "./routes/categoryimport.router.js";
 import categoryRouter from "./routes/category.router.js";
 import singleHotelRouter from "./routes/singlehotel.router.js";
+import authRouter from "./routes/auth.router.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -26,6 +30,8 @@ app.use("/api/hotels", hotelRouter);
 app.use("/api/category", categoryRouter);
 
 app.use("/api/hotels", singleHotelRouter);
+
+app.use("/api/auth", authRouter);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

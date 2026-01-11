@@ -1,0 +1,3 @@
+Read about the flow server, cdn, and when the db will be fetched and when not 
+Read about mongoose
+Read about the difference between open and connect in mongoose

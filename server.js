@@ -9,11 +9,13 @@ import singleHotelRouter from "./routes/singlehotel.router.js";
 import authRouter from "./routes/auth.router.js";
 import wishlistrouter from "./routes/wishlist.router.js";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 connectDB();
 
 const PORT = 3500;
